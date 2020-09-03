@@ -1,4 +1,5 @@
 import { Machine, interpret } from '@xstate/compiled';
+import { ExampleModel } from './models/example.model';
 
 type Data = {
   yeah: boolean;
@@ -6,7 +7,12 @@ type Data = {
 
 interface Context {
   data: Data;
+  example?: ExampleModel;
 }
+const initialContext: Context = {
+  data: { yeah: false },
+  example: new ExampleModel(),
+};
 
 type Event =
   | { type: 'MAKE_FETCH'; params: { id: string } }
